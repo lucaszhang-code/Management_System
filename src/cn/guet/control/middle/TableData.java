@@ -5,20 +5,18 @@ import cn.guet.control.utils.ConnectionUtils;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Test {
-    public static void main(String[] args)  {
-        demo1();
-//        demo2();
+public class TableData {
+    private List<String> columnNames;
+    private List<Object[]> data;
+
+    public TableData(List<String> columnNames, List<Object[]> data) {
+        this.columnNames = columnNames;
+        this.data = data;
     }
 
-    public static void demo1(){
-        String sql = "select * from staff_Management";
-        getColumeName(sql);
-        getData(sql);
-    }
 
     public static TableData getData(String sql) {
         DAO dao = new DAO();
@@ -32,7 +30,7 @@ public class Test {
 
             // 获取列名
             for (int i = 1; i <= columnCount; i++) {
-                columnNames.add(rsmd.getColumnName(i));
+                columnNames.add(rsmd.getColumnLabel(i));
             }
 
             // 获取数据
@@ -47,17 +45,24 @@ public class Test {
             e.printStackTrace();
         } finally {
             // 确保释放资源
-            ConnectionUtils.close(dao.getConnection(), dao.getStatement(), rs);
+            ConnectionUtils.close(null, null, rs);
         }
-
         return new TableData(columnNames, data);
     }
 
+    public List<String> getColumnNames() {
+        return columnNames;
+    }
 
-    public static void demo2(){
-        String sql = "delete from staff_management where sta_name ='刘备'" ;
-        DAO dao = new DAO();
-        int row = dao.update(sql);
-        System.out.println(row);
+    public void setColumnNames(List<String> columnNames) {
+        this.columnNames = columnNames;
+    }
+
+    public List<Object[]> getData() {
+        return data;
+    }
+
+    public void setData(List<Object[]> data) {
+        this.data = data;
     }
 }

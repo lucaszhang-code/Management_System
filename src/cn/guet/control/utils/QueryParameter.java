@@ -1,4 +1,4 @@
-package cn.guet;
+package cn.guet.control.utils;
 
 public class QueryParameter {
     private Object[] parameters;
