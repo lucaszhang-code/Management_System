@@ -1010,7 +1010,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="management">
-      <LastIntrospectionLocalTimestamp>2024-06-13.13:29:08</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-18.12:52:35</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="294" parent="1" name="mydatabase">
@@ -1119,7 +1119,6 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="318" parent="304" name="recru_id">
-      <AutoIncrement>10</AutoIncrement>
       <Comment>招聘信息编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1218,7 +1217,6 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Turn>before-row</Turn>
     </trigger>
     <column id="337" parent="306" name="sta_id">
-      <AutoIncrement>13</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1258,7 +1256,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="346" parent="307" name="tra_id">
-      <AutoIncrement>10</AutoIncrement>
+      <AutoIncrement>11</AutoIncrement>
       <Comment>培训编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>

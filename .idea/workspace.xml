@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="605b4ddb-d339-41d7-b332-29f04cd1041f" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManageMent_System.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-8.4.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/control/dao/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/control/middle/ExecuteUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/control/middle/TableData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/control/utils/ConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/control/utils/QueryParameter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Add.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/338109f8-3ed9-4ad1-8e2f-6e25b7a5c119.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/338109f8-3ed9-4ad1-8e2f-6e25b7a5c119.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +25,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="无" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -53,7 +38,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Desktop/工作/Java/ManageMent_System&quot;,
@@ -144,6 +129,10 @@
       <workItem from="1718259937904" duration="2413000" />
       <workItem from="1718262883461" duration="3020000" />
       <workItem from="1718278662805" duration="7537000" />
+      <workItem from="1718290070853" duration="106000" />
+      <workItem from="1718548493121" duration="1123000" />
+      <workItem from="1718707979876" duration="436000" />
+      <workItem from="1718708430493" duration="6462000" />
     </task>
     <servers />
   </component>

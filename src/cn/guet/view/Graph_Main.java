@@ -53,7 +53,7 @@ public class Graph_Main extends JFrame {
         updMenu.add(addItem);
         // 添加按钮事件
         addItem.addActionListener(e -> {
-            Graph_Add graph_add = new Graph_Add();
+            Graph_Add graph_add = new Graph_Add(getEnglishTableName(selectedItem));
             graph_add.setVisible(true);
         });
 
@@ -121,7 +121,11 @@ public class Graph_Main extends JFrame {
         p_Operate.add(btn_query);
         p_Operate.add(Box.createHorizontalGlue());
 
-        btn_add.addActionListener(e -> new Graph_Add());
+        /**
+         * 添加信息按钮事件
+         * 需要传递不同的值，告诉新窗口要添加哪张表的数据
+         */
+        btn_add.addActionListener(e -> new Graph_Add(tableNameMapping.get(selectedItem)));
         btn_query.addActionListener(e -> sel_query(selectedItem));
 
         frame.add(p_Center, BorderLayout.NORTH);
