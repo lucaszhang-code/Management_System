@@ -1,12 +1,11 @@
 package cn.guet.view;
-import cn.guet.control.middle.TableData;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import static cn.guet.view.Render_TableData.updateTableData;
 
 
 public class Graph_Main extends JFrame {
@@ -126,7 +125,10 @@ public class Graph_Main extends JFrame {
          * 需要传递不同的值，告诉新窗口要添加哪张表的数据
          */
         btn_add.addActionListener(e -> new Graph_Add(tableNameMapping.get(selectedItem)));
+        btn_del.addActionListener(e -> new Graph_Delete(tableNameMapping.get(selectedItem)));
+        btn_edit.addActionListener(e-> new Graph_Alter(tableNameMapping.get(selectedItem)));
         btn_query.addActionListener(e -> sel_query(selectedItem));
+
 
         frame.add(p_Center, BorderLayout.NORTH);
         frame.add(p_Graph, BorderLayout.CENTER);
@@ -138,35 +140,7 @@ public class Graph_Main extends JFrame {
         frame.setVisible(true);
     }
 
-    // 用于更新表格数据的方法
-    private static void updateTableData(String sql) {
-        // 获取查询数据
-        TableData tableData = TableData.getData(sql);
 
-        // 获取列名和数据
-        List<String> columnNames = tableData.getColumnNames();
-        List<Object[]> data = tableData.getData();
-
-        // 创建 DefaultTableModel 并设置列名
-        DefaultTableModel tableModel = new DefaultTableModel();
-        for (String columnName : columnNames) {
-            tableModel.addColumn(columnName);
-        }
-
-        // 添加数据到表格模型
-        for (Object[] rowData : data) {
-            tableModel.addRow(rowData);
-        }
-
-        // 创建 JTable 并设置模型
-        JTable table = new JTable(tableModel);
-        JScrollPane scrollPane = new JScrollPane(table);
-        p_Graph.removeAll();
-        p_Graph.setLayout(new BorderLayout());
-        p_Graph.add(scrollPane, BorderLayout.CENTER);
-        p_Graph.revalidate();
-        p_Graph.repaint();
-    }
 
     /**
      * 根据中文表名获取对应的英文表名
@@ -186,7 +160,7 @@ public class Graph_Main extends JFrame {
     public static void sel_query(String tableName) {
         String tableENName = getEnglishTableName(tableName);
         String result_sql = query_sql + tableENName;
-        updateTableData(result_sql);
+        updateTableData(result_sql,p_Graph);
     }
 
 
