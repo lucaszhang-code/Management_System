@@ -2,14 +2,13 @@ package cn.guet.view;
 
 import javax.swing.*;
 import java.awt.*;
-import static cn.guet.view.Render_TableData.updateTableData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Graph_Alter {
     private String tableENName;
-    private Render_TableData render_tableData;
+    private Render_TableData render_tableData = new Render_TableData();
     private List <String> columnNames, rowData;
     public static JPanel p_center;
 
@@ -23,7 +22,7 @@ public class Graph_Alter {
         frame.setLocationRelativeTo(null);
 
         p_center = new JPanel();
-        updateTableData("select * from " + tableENName, p_center);
+        render_tableData.updateTableData("select * from " + tableENName, p_center);
 
         JPanel p_bottom = new JPanel();
         JButton btn_alter = new JButton("修改");
@@ -31,6 +30,9 @@ public class Graph_Alter {
 
 
         JButton btn_query_alter = new JButton("精确查询");
+        // 重复调用Graph_Query界面
+        btn_query_alter.addActionListener(e -> new Graph_Query(tableENName, p_center));
+
         p_bottom.add(btn_alter);
         p_bottom.add(btn_query_alter);
 
@@ -62,8 +64,6 @@ public class Graph_Alter {
             rowData.add(value.toString());
         }
 
-        new Graph_Alter_Form( columnNames, rowData, tableENName);
-
-
+        new Graph_Alter_Form(columnNames, rowData, tableENName);
     }
 }

@@ -4,22 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-
-import static cn.guet.view.Render_TableData.updateTableData;
+import java.util.List;
 
 
 public class Graph_Main extends JFrame {
     private static JPanel p_Center = new JPanel(new BorderLayout());
-    private static JPanel p_Graph = new JPanel();
+    public static  JPanel p_Graph = new JPanel();
     private static JPanel p_Operate = new JPanel();
     private static JButton btn_add;
     private static JButton btn_del;
     private static JButton btn_edit;
     private static JButton btn_query;
+    private static JButton btn_generate_report;
     private static JComboBox cb_sel;
     private static final Map<String, String> tableNameMapping = new HashMap<>();
     private static String query_sql = "select * from ";
     private String selectedItem = "职员表";
+    private static Render_TableData render_tableData = new Render_TableData();
 
     static {
         tableNameMapping.put("职员表", "cn_staff_management");
@@ -35,6 +36,8 @@ public class Graph_Main extends JFrame {
 
     Graph_Main() {
         JFrame frame = new JFrame("人力资源管理系统");
+
+        render_tableData.updateTableData("select * from cn_staff_management",p_Graph);
 
         // 创建菜单栏
         JMenuBar menuBar = new JMenuBar();
@@ -58,8 +61,11 @@ public class Graph_Main extends JFrame {
 
         JMenuItem delItem = new JMenuItem("删除");
         updMenu.add(delItem);
+        delItem.addActionListener(e -> new Graph_Delete(getEnglishTableName(selectedItem)));
+
         JMenuItem chanItem = new JMenuItem("修改");
         updMenu.add(chanItem);
+        chanItem.addActionListener(e -> new Graph_Alter(getEnglishTableName(selectedItem)));
 
         JMenu BehMenu = new JMenu("状态");
         menuBar.add(BehMenu);
@@ -120,14 +126,20 @@ public class Graph_Main extends JFrame {
         p_Operate.add(btn_query);
         p_Operate.add(Box.createHorizontalGlue());
 
+        btn_generate_report = new JButton("生成报表");
+        btn_generate_report.setPreferredSize(new Dimension(100, 75));
+        p_Operate.add(btn_generate_report);
+        p_Operate.add(Box.createHorizontalGlue());
+
         /**
          * 添加信息按钮事件
          * 需要传递不同的值，告诉新窗口要添加哪张表的数据
          */
         btn_add.addActionListener(e -> new Graph_Add(tableNameMapping.get(selectedItem)));
         btn_del.addActionListener(e -> new Graph_Delete(tableNameMapping.get(selectedItem)));
-        btn_edit.addActionListener(e-> new Graph_Alter(tableNameMapping.get(selectedItem)));
+        btn_edit.addActionListener(e -> new Graph_Alter(tableNameMapping.get(selectedItem)));
         btn_query.addActionListener(e -> sel_query(selectedItem));
+        btn_generate_report.addActionListener(e -> new Graph_Generate_report(getColumnNames(), tableNameMapping.get(selectedItem)));
 
 
         frame.add(p_Center, BorderLayout.NORTH);
@@ -139,8 +151,6 @@ public class Graph_Main extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
-
 
     /**
      * 根据中文表名获取对应的英文表名
@@ -160,8 +170,10 @@ public class Graph_Main extends JFrame {
     public static void sel_query(String tableName) {
         String tableENName = getEnglishTableName(tableName);
         String result_sql = query_sql + tableENName;
-        updateTableData(result_sql,p_Graph);
+        render_tableData.updateTableData(result_sql,p_Graph);
     }
 
-
+    public List<String> getColumnNames() {
+        return render_tableData.getColumnNames();
+    }
 }

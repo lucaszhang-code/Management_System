@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="605b4ddb-d339-41d7-b332-29f04cd1041f" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter_Form.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Query.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Render_FormData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Render_TableData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/338109f8-3ed9-4ad1-8e2f-6e25b7a5c119.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/338109f8-3ed9-4ad1-8e2f-6e25b7a5c119.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Generate_report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter_Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Alter_Form.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Delete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Graph_Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Graph_Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Render_FormData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Render_FormData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/guet/view/Render_TableData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/guet/view/Render_TableData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,33 +42,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Desktop/工作/Java/ManageMent_System&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.Graph.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.Graph_Add.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.Graph_Main.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.Test.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.TestUpdate.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Lucas/Desktop/工作/Java/ManageMent_System",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Graph.executor": "Run",
+    "应用程序.Graph_Add.executor": "Run",
+    "应用程序.Graph_Generate_report.executor": "Run",
+    "应用程序.Graph_Main.executor": "Run",
+    "应用程序.Test.executor": "Run",
+    "应用程序.TestUpdate.executor": "Run"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Lucas\IdeaProjects\ManageMent_System\lib" />
@@ -146,7 +146,8 @@
       <workItem from="1719131244790" duration="295000" />
       <workItem from="1719215393013" duration="8834000" />
       <workItem from="1719237971599" duration="152000" />
-      <workItem from="1719313345293" duration="9981000" />
+      <workItem from="1719313345293" duration="10054000" />
+      <workItem from="1719382825505" duration="9428000" />
     </task>
     <servers />
   </component>

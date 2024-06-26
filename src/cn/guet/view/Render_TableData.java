@@ -4,21 +4,22 @@ import cn.guet.control.middle.TableData;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.List;
 
 public class Render_TableData {
     public static JTable table;
     public static DefaultTableModel tableModel;
+    private List<String> columnNames;
+    private List<Object[]> data;
     // 用于更新表格数据的方法
-    public static void updateTableData(String sql, JPanel p_Graph) {
+    public void updateTableData(String sql, JPanel p_Graph) {
         // 获取查询数据
         TableData tableData = TableData.getData(sql);
 
         // 获取列名和数据
-        List<String> columnNames = tableData.getColumnNames();
-        List<Object[]> data = tableData.getData();
+        this.columnNames = tableData.getColumnNames();
+        this.data = tableData.getData();
 
         // 创建 DefaultTableModel 并设置列名
         tableModel = new DefaultTableModel();
@@ -45,4 +46,7 @@ public class Render_TableData {
         return table;
     }
 
+    public List<String> getColumnNames() {
+        return columnNames;
+    }
 }

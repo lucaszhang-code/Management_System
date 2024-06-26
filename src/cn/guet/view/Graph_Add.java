@@ -7,19 +7,17 @@ import cn.guet.control.utils.QueryParameter;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.util.List;
-
 
 public class Graph_Add extends JFrame {
     private JButton jb_add, jb_cancel, jb_clear;
     public ExecuteUpdate ex = new ExecuteUpdate();
     String sql = "select * from ";
     String tableENName;
-    private Map<String, JTextField> labelText;
+    private Map<String, JComponent> labelText;
     private int textSize;
+    private Render_TableData render_tableData = new Render_TableData();
 
     static Map<String, String> tableNameMapping = new HashMap<>();
-
 
     static {
         tableNameMapping.put("cn_staff_management", "staff_management");
@@ -56,7 +54,6 @@ public class Graph_Add extends JFrame {
         JPanel jp_Temp2 = new JPanel();
         jp_Temp2.setPreferredSize(new Dimension(25, 100));
 
-
         this.add(jp_North);
         this.add(jp_South, BorderLayout.SOUTH);
         this.add(jp_Temp1, BorderLayout.EAST);
@@ -66,7 +63,6 @@ public class Graph_Add extends JFrame {
         jb_clear.addActionListener(e -> clear());
         jb_cancel.addActionListener(e -> cancel());
 
-
         this.setTitle("添加");
         this.setSize(300, 400);
         this.setLocationRelativeTo(null);
@@ -75,9 +71,15 @@ public class Graph_Add extends JFrame {
     }
 
     public void clear() {
-        for (JTextField textField : labelText.values()) {
-            textField.setText("");
-        }
+        labelText.values().forEach(comp -> {
+            if (comp instanceof JTextField) {
+                ((JTextField) comp).setText("");
+            } else if (comp instanceof JPanel) { // Assuming this JPanel contains JRadioButtons
+                Arrays.stream(((JPanel) comp).getComponents())
+                        .filter(c -> c instanceof JRadioButton)
+                        .forEach(c -> ((JRadioButton) c).setSelected(false));
+            }
+        });
     }
 
     public void cancel() {
@@ -85,53 +87,42 @@ public class Graph_Add extends JFrame {
     }
 
     public void add() {
-        StringBuilder insertNum = new StringBuilder(" values (");
-        for (int i = 0; i < textSize; i++) {
-            if (i == textSize - 1) {
-                insertNum.append("?");
-            } else {
-                insertNum.append("?, ");
+        ArrayList<Object> parameters = new ArrayList<>();
+        labelText.forEach((key, comp) -> {
+            if (comp instanceof JTextField) {
+                parameters.add(((JTextField) comp).getText());
+            } else if (comp instanceof JPanel) { // Assuming this JPanel contains JRadioButtons
+                ButtonGroup group = new ButtonGroup();
+                for (Component c : ((JPanel) comp).getComponents()) {
+                    if (c instanceof JRadioButton && ((JRadioButton) c).isSelected()) {
+                        parameters.add(((JRadioButton) c).getText());
+                    }
+                }
             }
-        }
-        insertNum.append(")");
+        });
+
+
+        Object[] parametersArray = parameters.toArray();
+        QueryParameter qp = new QueryParameter(parametersArray);
+
+        sql = "insert into " + tableNameMapping.getOrDefault(tableENName, tableENName) + " values(" + String.join(",", Collections.nCopies(parameters.size(), "?")) + ")";
 
         // 针对工资表特殊处理
         if(Objects.equals(tableENName, "cn_salary_management")) {
             sql = "insert into salary_management(sal_id, sal_name, sal_base, sal_reward, sal_subsidy) values(?,?,?,?,?)";
             System.out.println("sql改变了");
         }
-        else{
-            sql = "insert into " + tableNameMapping.get(tableENName) + insertNum;
-        }
 
+        int rows = ex.execute(sql, qp);
+        System.out.println(sql);
 
-        // 直接从labelText中获取文本值并创建QueryParameter实例
-        Object[] parameters = new Object[labelText.size()];
-        int index = 0;
-        for (JTextField textField : labelText.values()) {
-            parameters[index++] = textField.getText();
-        }
-
-
-        QueryParameter qp = new QueryParameter(parameters);
-
-        // 确保parameters的数量与SQL预设的问号数量匹配
-        if (parameters.length <= textSize) { // 假设最大参数数量为6，根据实际情况调整
-            int rows = ex.execute(sql, qp);
-            System.out.println(sql);
-
-            for (Object str : parameters) {
-                System.out.println(str);
-            }
-            if (rows != 0) {
-                JOptionPane.showMessageDialog(null, "添加成功");
-                clear();
-            } else {
-                JOptionPane.showMessageDialog(null, "添加失败，请检查输入");
-            }
+        if (rows > 0) {
+            JOptionPane.showMessageDialog(this, "添加成功");
+            clear();
+            render_tableData.updateTableData("select * from " + tableENName, Graph_Main.p_Graph);
+            Graph_Main.p_Graph.repaint();
         } else {
-            JOptionPane.showMessageDialog(null, "输入参数过多，请检查");
+            JOptionPane.showMessageDialog(this, "添加失败，请检查输入");
         }
     }
-
 }

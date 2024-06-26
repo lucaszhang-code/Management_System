@@ -7,13 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 import static cn.guet.view.Render_TableData.tableModel;
-import static cn.guet.view.Render_TableData.updateTableData;
 
 public class Graph_Delete {
     private String tableENName; // 视图表的名字
     public static JPanel p_center;
     private static JPanel p_bottom;
-    private Render_TableData render_tableData;
+    private Render_TableData render_tableData = new Render_TableData();
     String sql;
     private ExecuteUpdate ex = new ExecuteUpdate();
 
@@ -33,19 +32,18 @@ public class Graph_Delete {
         btn_delete.addActionListener(e -> delete_data());
 
         JButton btn_query_delete = new JButton("查询删除");
-        btn_query_delete.addActionListener(e -> new Graph_Query(tableENName));
+        btn_query_delete.addActionListener(e -> new Graph_Query(tableENName, p_center));
 
         p_bottom.add(btn_delete);
         p_bottom.add(btn_query_delete);
         frame.add(p_center, BorderLayout.CENTER);
         frame.add(p_bottom, BorderLayout.SOUTH);
 
-        updateTableData("select * from " + tableENName, p_center);
+        render_tableData.updateTableData("select * from " + tableENName, p_center);
         frame.setVisible(true);
     }
 
     public void delete_data() {
-        render_tableData = new Render_TableData();
         JTable table = render_tableData.getTable();
         int selectedRow = table.getSelectedRow();
 
@@ -85,6 +83,8 @@ public class Graph_Delete {
             ex.execute(sql);
             System.out.println(sql);
             tableModel.removeRow(selectedRow);
+            render_tableData.updateTableData("select * from " + tableENName, Graph_Main.p_Graph);
+            Graph_Main.p_Graph.repaint();
             JOptionPane.showMessageDialog(null, "记录已删除");
         }
     }

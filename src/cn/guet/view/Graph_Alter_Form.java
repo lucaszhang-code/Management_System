@@ -17,6 +17,7 @@ public class Graph_Alter_Form {
     private List<String> rowData;
     private String unedit_id;
     private Map<String, JTextField> labelText;
+    private Render_TableData render_tableData = new Render_TableData();
 
     Graph_Alter_Form(List<String> columnNames, List<String> rowData, String tableENName) {
         this.tableENName = tableENName;
@@ -99,8 +100,9 @@ public class Graph_Alter_Form {
                 textField.setText("");
             }
 
-            Render_TableData.updateTableData("select * from " + tableENName, Graph_Alter.p_center);
-
+            render_tableData.updateTableData("select * from " + tableENName, Graph_Alter.p_center);
+            render_tableData.updateTableData("select * from " + tableENName, Graph_Main.p_Graph);
+            Graph_Main.p_Graph.repaint();
         }
 
     }
