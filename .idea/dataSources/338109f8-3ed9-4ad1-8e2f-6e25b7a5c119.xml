@@ -1010,7 +1010,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="management">
-      <LastIntrospectionLocalTimestamp>2024-06-24.08:54:29</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-26.13:40:30</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="294" parent="1" name="mydatabase">
@@ -1047,400 +1047,427 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="303" parent="293" name="assessment_management">
+    <table id="303" parent="293" name="administrator">
+      <Comment>管理员表</Comment>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="304" parent="293" name="assessment_management">
       <Comment>考核管理</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="293" name="recruitment_management">
+    <table id="305" parent="293" name="recruitment_management">
       <Comment>应聘管理表</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="305" parent="293" name="salary_management">
+    <table id="306" parent="293" name="salary_management">
       <Comment>薪资表</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="306" parent="293" name="staff_management">
+    <table id="307" parent="293" name="staff_management">
       <Comment>职工表</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="307" parent="293" name="training_management">
+    <table id="308" parent="293" name="training_management">
       <Comment>培训管理表</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <view id="308" parent="293" name="cn_assessment_management">
+    <view id="309" parent="293" name="cn_assessment_management">
       <Definer>root@localhost</Definer>
       <SourceTextLength>226</SourceTextLength>
     </view>
-    <view id="309" parent="293" name="cn_recruitment_management">
+    <view id="310" parent="293" name="cn_recruitment_management">
       <Definer>root@localhost</Definer>
       <SourceTextLength>489</SourceTextLength>
     </view>
-    <view id="310" parent="293" name="cn_salary_management">
+    <view id="311" parent="293" name="cn_salary_management">
       <Definer>root@localhost</Definer>
       <SourceTextLength>368</SourceTextLength>
     </view>
-    <view id="311" parent="293" name="cn_staff_management">
+    <view id="312" parent="293" name="cn_staff_management">
       <Definer>root@localhost</Definer>
       <SourceTextLength>430</SourceTextLength>
     </view>
-    <view id="312" parent="293" name="cn_training_management">
+    <view id="313" parent="293" name="cn_training_management">
       <Definer>root@localhost</Definer>
       <SourceTextLength>336</SourceTextLength>
     </view>
-    <column id="313" parent="303" name="ass_id">
+    <column id="314" parent="303" name="admin_user">
+      <Comment>管理员用户名</Comment>
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="315" parent="303" name="password">
+      <Comment>密码</Comment>
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <index id="316" parent="303" name="PRIMARY">
+      <ColNames>admin_user</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="317" parent="303" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="318" parent="304" name="ass_id">
       <Comment>被评估者编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="314" parent="303" name="ass_name">
+    <column id="319" parent="304" name="ass_name">
       <Comment>被评估者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="315" parent="303" name="ass_behavior">
+    <column id="320" parent="304" name="ass_behavior">
       <Comment>评价</Comment>
       <DasType>text|0s</DasType>
       <Position>3</Position>
     </column>
-    <index id="316" parent="303" name="PRIMARY">
+    <index id="321" parent="304" name="PRIMARY">
       <ColNames>ass_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="317" parent="303" name="assessment_management_pk">
+    <index id="322" parent="304" name="assessment_management_pk">
       <ColNames>ass_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="318" parent="303" name="PRIMARY">
+    <key id="323" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="319" parent="303" name="assessment_management_pk">
+    <key id="324" parent="304" name="assessment_management_pk">
       <UnderlyingIndexName>assessment_management_pk</UnderlyingIndexName>
     </key>
-    <column id="320" parent="304" name="recru_id">
+    <column id="325" parent="305" name="recru_id">
       <Comment>招聘信息编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="321" parent="304" name="recru_empolyer">
+    <column id="326" parent="305" name="recru_empolyer">
       <Comment>面试官</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="322" parent="304" name="recru_empolyee">
+    <column id="327" parent="305" name="recru_empolyee">
       <Comment>面试人员</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="323" parent="304" name="recru_loaction">
+    <column id="328" parent="305" name="recru_loaction">
       <Comment>面试地点</Comment>
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="324" parent="304" name="recru_date">
+    <column id="329" parent="305" name="recru_date">
       <Comment>面试时间</Comment>
-      <DasType>date|0s</DasType>
+      <DasType>varchar(20)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="325" parent="304" name="recru_record">
+    <column id="330" parent="305" name="recru_record">
       <Comment>面试记录</Comment>
       <DasType>text|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="326" parent="304" name="recru_result">
+    <column id="331" parent="305" name="recru_result">
       <Comment>是否录用</Comment>
       <DasType>char(1)|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="327" parent="304" name="PRIMARY">
+    <index id="332" parent="305" name="PRIMARY">
       <ColNames>recru_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="328" parent="304" name="recruitment_management_pk">
+    <index id="333" parent="305" name="recruitment_management_pk">
       <ColNames>recru_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="329" parent="304" name="PRIMARY">
+    <key id="334" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="330" parent="304" name="recruitment_management_pk">
+    <key id="335" parent="305" name="recruitment_management_pk">
       <UnderlyingIndexName>recruitment_management_pk</UnderlyingIndexName>
     </key>
-    <column id="331" parent="305" name="sal_id">
+    <column id="336" parent="306" name="sal_id">
       <Comment>薪资拥有者编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="332" parent="305" name="sal_name">
+    <column id="337" parent="306" name="sal_name">
       <Comment>薪资拥有者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="333" parent="305" name="sal_base">
+    <column id="338" parent="306" name="sal_base">
       <Comment>基础工资</Comment>
       <DasType>double|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="334" parent="305" name="sal_reward">
+    <column id="339" parent="306" name="sal_reward">
       <Comment>薪资奖励</Comment>
       <DasType>double|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="335" parent="305" name="sal_subsidy">
+    <column id="340" parent="306" name="sal_subsidy">
       <Comment>补贴</Comment>
       <DasType>double|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="336" parent="305" name="sal_sum">
+    <column id="341" parent="306" name="sal_sum">
       <DasType>double|0s</DasType>
       <Position>6</Position>
     </column>
-    <index id="337" parent="305" name="PRIMARY">
+    <index id="342" parent="306" name="PRIMARY">
       <ColNames>sal_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="338" parent="305" name="PRIMARY">
+    <key id="343" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <trigger id="339" parent="305" name="before_insert_salary">
+    <trigger id="344" parent="306" name="before_insert_salary">
       <Definer>root@localhost</Definer>
       <Events>I</Events>
       <SourceTextLength>65</SourceTextLength>
       <Turn>before-row</Turn>
     </trigger>
-    <trigger id="340" parent="305" name="before_update_salary">
+    <trigger id="345" parent="306" name="before_update_salary">
       <Definer>root@localhost</Definer>
       <Events>U</Events>
       <SourceTextLength>65</SourceTextLength>
       <Turn>before-row</Turn>
     </trigger>
-    <column id="341" parent="306" name="sta_id">
+    <column id="346" parent="307" name="sta_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="342" parent="306" name="sta_name">
+    <column id="347" parent="307" name="sta_name">
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="343" parent="306" name="sta_gender">
+    <column id="348" parent="307" name="sta_gender">
       <DasType>char(1)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="344" parent="306" name="sta_birth">
+    <column id="349" parent="307" name="sta_birth">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="345" parent="306" name="sta_contact_info">
+    <column id="350" parent="307" name="sta_contact_info">
       <DasType>char(11)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="346" parent="306" name="sta_department">
+    <column id="351" parent="307" name="sta_department">
       <DasType>varchar(20)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="347" parent="306" name="sta_job">
+    <column id="352" parent="307" name="sta_job">
       <DasType>varchar(20)|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="348" parent="306" name="PRIMARY">
+    <index id="353" parent="307" name="PRIMARY">
       <ColNames>sta_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="349" parent="306" name="PRIMARY">
+    <key id="354" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="350" parent="307" name="tra_id">
+    <column id="355" parent="308" name="tra_id">
       <AutoIncrement>12</AutoIncrement>
       <Comment>培训编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="351" parent="307" name="tra_instructor">
+    <column id="356" parent="308" name="tra_instructor">
       <Comment>培训讲师</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="352" parent="307" name="tra_trainer">
+    <column id="357" parent="308" name="tra_trainer">
       <Comment>被培训者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="353" parent="307" name="tra_period">
+    <column id="358" parent="308" name="tra_period">
       <Comment>培训时间</Comment>
       <DasType>varchar(40)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="354" parent="307" name="tra_result">
+    <column id="359" parent="308" name="tra_result">
       <Comment>培训效果</Comment>
       <DasType>text|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="355" parent="307" name="PRIMARY">
+    <index id="360" parent="308" name="PRIMARY">
       <ColNames>tra_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="356" parent="307" name="PRIMARY">
+    <key id="361" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="357" parent="308" name="被评估者编号">
+    <column id="362" parent="309" name="被评估者编号">
       <Comment>被评估者编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="358" parent="308" name="被评估者名称">
+    <column id="363" parent="309" name="被评估者名称">
       <Comment>被评估者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="359" parent="308" name="评价">
+    <column id="364" parent="309" name="评价">
       <Comment>评价</Comment>
       <DasType>text|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="360" parent="309" name="招聘编号">
+    <column id="365" parent="310" name="招聘编号">
       <Comment>招聘信息编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="361" parent="309" name="面试官">
+    <column id="366" parent="310" name="面试官">
       <Comment>面试官</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="362" parent="309" name="面试人员">
+    <column id="367" parent="310" name="面试人员">
       <Comment>面试人员</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="363" parent="309" name="招聘地点">
+    <column id="368" parent="310" name="招聘地点">
       <Comment>面试地点</Comment>
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="364" parent="309" name="招聘日期">
+    <column id="369" parent="310" name="招聘日期">
       <Comment>面试时间</Comment>
-      <DasType>date|0s</DasType>
+      <DasType>varchar(20)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="365" parent="309" name="招聘记录">
+    <column id="370" parent="310" name="招聘记录">
       <Comment>面试记录</Comment>
       <DasType>text|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="366" parent="309" name="招聘结果">
+    <column id="371" parent="310" name="招聘结果">
       <Comment>是否录用</Comment>
       <DasType>char(1)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="367" parent="310" name="工资编号">
+    <column id="372" parent="311" name="工资编号">
       <Comment>薪资拥有者编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="368" parent="310" name="员工姓名">
+    <column id="373" parent="311" name="员工姓名">
       <Comment>薪资拥有者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="369" parent="310" name="基础工资">
+    <column id="374" parent="311" name="基础工资">
       <Comment>基础工资</Comment>
       <DasType>double|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="370" parent="310" name="绩效奖金">
+    <column id="375" parent="311" name="绩效奖金">
       <Comment>薪资奖励</Comment>
       <DasType>double|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="371" parent="310" name="补贴">
+    <column id="376" parent="311" name="补贴">
       <Comment>补贴</Comment>
       <DasType>double|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="372" parent="310" name="工资总额">
+    <column id="377" parent="311" name="工资总额">
       <DasType>double|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="373" parent="311" name="员工编号">
+    <column id="378" parent="312" name="员工编号">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="374" parent="311" name="员工姓名">
+    <column id="379" parent="312" name="员工姓名">
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="375" parent="311" name="员工性别">
+    <column id="380" parent="312" name="员工性别">
       <DasType>char(1)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="376" parent="311" name="员工生日">
+    <column id="381" parent="312" name="员工生日">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="377" parent="311" name="员工联系方式">
+    <column id="382" parent="312" name="员工联系方式">
       <DasType>char(11)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="378" parent="311" name="员工部门">
+    <column id="383" parent="312" name="员工部门">
       <DasType>varchar(20)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="379" parent="311" name="员工职位">
+    <column id="384" parent="312" name="员工职位">
       <DasType>varchar(20)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="380" parent="312" name="培训编号">
+    <column id="385" parent="313" name="培训编号">
       <Comment>培训编号</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="381" parent="312" name="培训师">
+    <column id="386" parent="313" name="培训师">
       <Comment>培训讲师</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="382" parent="312" name="培训人员">
+    <column id="387" parent="313" name="培训人员">
       <Comment>被培训者</Comment>
       <DasType>varchar(10)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="383" parent="312" name="培训期数">
+    <column id="388" parent="313" name="培训期数">
       <Comment>培训时间</Comment>
       <DasType>varchar(40)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="384" parent="312" name="培训结果">
+    <column id="389" parent="313" name="培训结果">
       <Comment>培训效果</Comment>
       <DasType>text|0s</DasType>
       <Position>5</Position>

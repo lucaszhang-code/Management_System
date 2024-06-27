@@ -30,10 +30,6 @@ public class Graph_Main extends JFrame {
         tableNameMapping.put("培训管理表", "cn_training_management");
     }
 
-    public static void main(String[] args) {
-        new Graph_Main();
-    }
-
     Graph_Main() {
         JFrame frame = new JFrame("人力资源管理系统");
 
@@ -69,7 +65,8 @@ public class Graph_Main extends JFrame {
 
         JMenu BehMenu = new JMenu("状态");
         menuBar.add(BehMenu);
-        JMenuItem refItem = new JMenuItem("刷新");
+        JMenuItem refItem = new JMenuItem("生成报表");
+        refItem.addActionListener(e -> new Graph_Generate_report(getColumnNames(), tableNameMapping.get(selectedItem)));
         BehMenu.add(refItem);
 
         JMenu helpMenu = new JMenu("帮助");
@@ -175,5 +172,9 @@ public class Graph_Main extends JFrame {
 
     public List<String> getColumnNames() {
         return render_tableData.getColumnNames();
+    }
+
+    public static void main(String[] args) {
+        new Graph_Main();
     }
 }
