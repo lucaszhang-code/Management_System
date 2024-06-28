@@ -51,6 +51,7 @@ public class Graph_Query {
 
         JButton b_clear = new JButton("清空");
         b_clear.addActionListener(e -> clearFields());
+
         p_bottom.add(b_query);
         p_bottom.add(b_clear);
 
@@ -99,10 +100,12 @@ public class Graph_Query {
         labelText.values().forEach(comp -> {
             if (comp instanceof JTextField) {
                 ((JTextField) comp).setText("");
-            } else if (comp instanceof JPanel) { // Assuming this JPanel contains JRadioButtons
+            }
+            else if (comp instanceof JPanel) {
                 Arrays.stream(((JPanel) comp).getComponents())
                         .filter(c -> c instanceof JRadioButton)
                         .forEach(c -> ((JRadioButton) c).setSelected(false));
+
             }
         });
     }

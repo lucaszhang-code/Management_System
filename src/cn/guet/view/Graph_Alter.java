@@ -67,3 +67,6 @@ public class Graph_Alter {
         new Graph_Alter_Form(columnNames, rowData, tableENName);
     }
 }
+
+
+

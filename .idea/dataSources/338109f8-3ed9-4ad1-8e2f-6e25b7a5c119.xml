@@ -1010,7 +1010,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="management">
-      <LastIntrospectionLocalTimestamp>2024-06-26.13:40:30</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-27.16:02:07</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="294" parent="1" name="mydatabase">

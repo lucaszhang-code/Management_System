@@ -1,12 +1,13 @@
 package cn.guet.view;
 
 import cn.guet.control.middle.ExecuteUpdate;
-import cn.guet.control.middle.TableData;
 import cn.guet.control.utils.QueryParameter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 public class Graph_Add extends JFrame {
     private JButton jb_add, jb_cancel, jb_clear;
@@ -86,21 +87,53 @@ public class Graph_Add extends JFrame {
         this.dispose();
     }
 
+
     public void add() {
         ArrayList<Object> parameters = new ArrayList<>();
+        AtomicBoolean valid = new AtomicBoolean(true); // 添加一个标志以跟踪输入是否有效
+        StringBuilder errorMessage = new StringBuilder();
+
+        Pattern phonePattern = Pattern.compile("^1[3-9]\\d{9}$"); // 手机号码正则表达式
+
         labelText.forEach((key, comp) -> {
             if (comp instanceof JTextField) {
-                parameters.add(((JTextField) comp).getText());
-            } else if (comp instanceof JPanel) { // Assuming this JPanel contains JRadioButtons
-                ButtonGroup group = new ButtonGroup();
+                String text = ((JTextField) comp).getText();
+                if (text.isEmpty()) {
+                    // 处理空输入框
+                    errorMessage.append(key).append(" 输入框不能为空\n");
+                    valid.set(false); // 设置标志为无效
+                } else if ("员工联系方式".equals(key)) {
+                    // 检查手机号码的合法性
+                    if (!phonePattern.matcher(text).matches()) {
+                        errorMessage.append("手机号码不合法\n");
+                        valid.set(false); // 设置标志为无效
+                    } else {
+                        parameters.add(text);
+                    }
+                } else {
+                    parameters.add(text);
+                }
+            } else if (comp instanceof JPanel) { // 假设这个JPanel包含JRadioButton
+                boolean selected = false;
                 for (Component c : ((JPanel) comp).getComponents()) {
                     if (c instanceof JRadioButton && ((JRadioButton) c).isSelected()) {
                         parameters.add(((JRadioButton) c).getText());
+                        selected = true;
+                        break; // 找到已选择的按钮后退出循环
                     }
+                }
+                if (!selected) {
+                    // 处理未选择任何选项的情况
+                    errorMessage.append(key).append(" 必须选择一个选项\n");
+                    valid.set(false); // 设置标志为无效
                 }
             }
         });
 
+        if (!valid.get()) {
+            JOptionPane.showMessageDialog(null, errorMessage.toString(), "警告", JOptionPane.WARNING_MESSAGE);
+            return; // 如果有无效输入，退出函数
+        }
 
         Object[] parametersArray = parameters.toArray();
         QueryParameter qp = new QueryParameter(parametersArray);
@@ -108,7 +141,7 @@ public class Graph_Add extends JFrame {
         sql = "insert into " + tableNameMapping.getOrDefault(tableENName, tableENName) + " values(" + String.join(",", Collections.nCopies(parameters.size(), "?")) + ")";
 
         // 针对工资表特殊处理
-        if(Objects.equals(tableENName, "cn_salary_management")) {
+        if (Objects.equals(tableENName, "cn_salary_management")) {
             sql = "insert into salary_management(sal_id, sal_name, sal_base, sal_reward, sal_subsidy) values(?,?,?,?,?)";
             System.out.println("sql改变了");
         }
@@ -125,4 +158,7 @@ public class Graph_Add extends JFrame {
             JOptionPane.showMessageDialog(this, "添加失败，请检查输入");
         }
     }
+
 }
+
+

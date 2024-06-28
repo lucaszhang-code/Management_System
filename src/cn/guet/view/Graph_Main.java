@@ -19,12 +19,12 @@ public class Graph_Main extends JFrame {
     private static JComboBox cb_sel;
     private static final Map<String, String> tableNameMapping = new HashMap<>();
     private static String query_sql = "select * from ";
-    private String selectedItem = "职员表";
+    private String selectedItem = "职员管理表";
     private static Render_TableData render_tableData = new Render_TableData();
 
     static {
-        tableNameMapping.put("职员表", "cn_staff_management");
-        tableNameMapping.put("薪资表", "cn_salary_management");
+        tableNameMapping.put("职员管理表", "cn_staff_management");
+        tableNameMapping.put("薪资管理表", "cn_salary_management");
         tableNameMapping.put("考核管理表", "cn_assessment_management");
         tableNameMapping.put("应聘管理表", "cn_recruitment_management");
         tableNameMapping.put("培训管理表", "cn_training_management");
@@ -41,9 +41,9 @@ public class Graph_Main extends JFrame {
 
         JMenu selMenu = new JMenu("查询");
         menuBar.add(selMenu);
-        JMenuItem selItem = new JMenuItem("查询");
+        JMenuItem selItem = new JMenuItem("搜索");
         selMenu.add(selItem);
-        selItem.addActionListener(e -> sel_query(selectedItem));
+        selItem.addActionListener(e -> new Graph_Query(getEnglishTableName(selectedItem), p_Graph));
 
         JMenu updMenu = new JMenu("更新");
         menuBar.add(updMenu);
@@ -83,7 +83,7 @@ public class Graph_Main extends JFrame {
         leftPanel.setPreferredSize(new Dimension(100, 100));
         JPanel rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(100, 100));
-        String[] items = {"职员表", "薪资表", "考核管理表", "应聘管理表", "培训管理表"};
+        String[] items = {"职员管理表", "薪资管理表", "考核管理表", "应聘管理表", "培训管理表"};
         JComboBox<String> cb_sel = new JComboBox<>(items);
         rightPanel.add(cb_sel);
 
@@ -118,7 +118,7 @@ public class Graph_Main extends JFrame {
         p_Operate.add(btn_edit);
         p_Operate.add(Box.createHorizontalGlue());
 
-        btn_query = new JButton("查询");
+        btn_query = new JButton("搜索");
         btn_query.setPreferredSize(new Dimension(100, 75));
         p_Operate.add(btn_query);
         p_Operate.add(Box.createHorizontalGlue());
@@ -135,7 +135,7 @@ public class Graph_Main extends JFrame {
         btn_add.addActionListener(e -> new Graph_Add(tableNameMapping.get(selectedItem)));
         btn_del.addActionListener(e -> new Graph_Delete(tableNameMapping.get(selectedItem)));
         btn_edit.addActionListener(e -> new Graph_Alter(tableNameMapping.get(selectedItem)));
-        btn_query.addActionListener(e -> sel_query(selectedItem));
+        btn_query.addActionListener(e -> new Graph_Query(getEnglishTableName(selectedItem), p_Graph));
         btn_generate_report.addActionListener(e -> new Graph_Generate_report(getColumnNames(), tableNameMapping.get(selectedItem)));
 
 
@@ -158,7 +158,6 @@ public class Graph_Main extends JFrame {
         return tableNameMapping.get(chineseName);
     }
 
-
     /**
      * 构建SQL查询语句
      * @param tableName 表名
@@ -178,3 +177,4 @@ public class Graph_Main extends JFrame {
         new Graph_Main();
     }
 }
+

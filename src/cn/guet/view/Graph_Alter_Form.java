@@ -31,7 +31,7 @@ public class Graph_Alter_Form {
 
         JPanel p_Form = new JPanel(new GridLayout(columnNames.size(), 2));
         labelText = new LinkedHashMap<>();
-        for(int i = 0; i < columnNames.size(); i++){
+        for (int i = 0; i < columnNames.size(); i++) {
             JLabel label = new JLabel(columnNames.get(i));
             label.setFont(myFont);
             JTextField text = new JTextField(rowData.get(i));
@@ -39,7 +39,7 @@ public class Graph_Alter_Form {
             p_Form.add(label);
             p_Form.add(text);
 
-            if(columnNames.get(i).equals("工资总额")){
+            if (columnNames.get(i).equals("工资总额")) {
                 text.setEditable(false);
             }
             labelText.put(columnNames.get(i), text);
@@ -72,10 +72,14 @@ public class Graph_Alter_Form {
         StringBuilder sql_1 = new StringBuilder("update " + tableENName + " set ");
         String sql_2 = " where ";
         for (int i = 0; i < rowData.size(); i++) {
+            if(labelText.get(columnNames.get(i)).getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "请输入完整信息！");
+                return;
+            }
             if (i == 0) {
                 // 假设第一个字段是主键，用于 WHERE 子句
                 sql_2 += columnNames.get(i) + " = '" + unedit_id + "'";
-                    sql_1.append(columnNames.get(i)).append(" = '").append(labelText.get(columnNames.get(i)).getText()).append("', ");
+                sql_1.append(columnNames.get(i)).append(" = '").append(labelText.get(columnNames.get(i)).getText()).append("', ");
             } else {
                 sql_1.append(columnNames.get(i)).append(" = '").append(labelText.get(columnNames.get(i)).getText()).append("', ");
             }
@@ -96,13 +100,12 @@ public class Graph_Alter_Form {
             System.out.println(finalSql);
             JOptionPane.showMessageDialog(null, "记录已修改");
 
-            for(JTextField textField : labelText.values()){
+            for (JTextField textField : labelText.values()) {
                 textField.setText("");
             }
 
             render_tableData.updateTableData("select * from " + tableENName, Graph_Alter.p_center);
             render_tableData.updateTableData("select * from " + tableENName, Graph_Main.p_Graph);
-            Graph_Main.p_Graph.repaint();
         }
 
     }
